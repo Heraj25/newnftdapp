@@ -57,7 +57,7 @@
               <npmVersion>7.14.0</npmVersion>
             </configuration>
           </execution>
-          <!-- <execution>
+          <execution>
             <id>npm install</id>
             <goals>
               <goal>npm</goal>
@@ -65,12 +65,12 @@
             <configuration>
               <arguments>install</arguments>
             </configuration>
-          </execution> -->
+          </execution>
           <execution>
-            <!-- <id>npm build</id>
+            <id>npm build</id>
             <goals>
               <goal>npm</goal>
-            </goals> -->
+            </goals>
             <configuration>
               <arguments>run build</arguments>
             </configuration>
