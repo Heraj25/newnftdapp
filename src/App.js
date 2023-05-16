@@ -19,116 +19,145 @@ import NFT from './abis/NFT.json'
 import config from './config.json';
 import ContactUs from './components/ContactUs';
 
+
 function App() {
   const [visble,setVisible]=useState("none")
   const [bt,setBt]=useState("block")
   const [provider, setProvider] = useState(null)
   const [account, setAccount] = useState(null)
-  const [nft, setNFT] = useState(null)
+  const[nft, setNFT] = useState(null)
 
-  const [name, setName] = useState("")
-  const [description, setDescription] = useState("")
-  const [image, setImage] = useState(null)
-  const [url, setURL] = useState(null)
+  const[name, setName] = useState("")
+  const[description, setDescription] = useState("")
+  const[image, setImage] = useState(null)
 
-  const [message, setMessage] = useState("")
+  
+  const[url, setURL] = useState(null)
+
+  const[message, setMessage] = useState("")
   const [isWaiting, setIsWaiting] = useState(false)
 
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     setProvider(provider)
 
+
     const network = await provider.getNetwork()
 
     const nft = new ethers.Contract(config[network.chainId].nft.address, NFT, provider)
     setNFT(nft)
+
+    
   }
 
   const submitHandler = async (e) => {
-    e.preventDefault()
-
-    if (name === "" || description === "") {
-      window.alert("Please provide a name and description")
+    e.preventDefault()           //stops refreshing the page when Generate button is clicked
+    
+    //popping messages for the user to give text prompt for getting an NFT image
+    if(name === "" && description === "") {
+      window.alert("Please specify the name and description of the NFT image")
       return
     }
 
+    if(name === "" && description !== ""){
+      window.alert("Please specify the name of the NFT image")
+    }
+
+    if(name !== "" && description === "") {
+      window.alert("Please give the description of the NFT image")
+      return
+    }
+
+    //create a 
+
     setIsWaiting(true)
 
-    // Call AI API to generate a image based on description
-    const imageData = await createImage()
+    const imageData = createImage() //Calling an AI API to generate the image from the user description
 
-    // Upload image to IPFS (NFT.Storage)
-    const url = await uploadImage(imageData)
 
-    // Mint NFT
-    await mintImage(url)
+    const url = await uploadImage(imageData) //Uploading the image to IPFS(NFT.Storage)
+
+    await mintImage(url) //minting the NFT
 
     setIsWaiting(false)
+
     setMessage("")
+
+    console.log("success")
   }
 
-  const createImage = async () => {
-    setMessage("Generating Image...")
+  const createImage = async (e) => {
+    setMessage("Generating the NFT Image...")
+    console.log("Generating Image...")
 
-    // You can replace this with different model API's
-    const URL = `https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5`
+    //The model API
+    const URL = 'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2'
 
-    // Send the request
-    const response = await axios({
-      url: URL,
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      data: JSON.stringify({
-        inputs: description, options: { wait_for_model: true },
-      }),
-      responseType: 'arraybuffer',
-    })
-
+      const response = await axios({
+        url: URL,
+        method: 'POST',
+        headers: {
+          Authorization : 'Bearer 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',   
+          Accept: 'application/json' ,
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify({
+          inputs: description, options: { wait_for_model: true },
+        }),
+        responseType: 'arraybuffer',
+      })             //this is the function to make the API call
+  
     const type = response.headers['content-type']
     const data = response.data
 
     const base64data = Buffer.from(data).toString('base64')
-    const img = `data:${type};base64,` + base64data // <-- This is so we can render it on the page
+    const img = `data:${type};base64,` + base64data   //  <--- This is to render on our front end react Page
     setImage(img)
 
     return data
   }
 
   const uploadImage = async (imageData) => {
-    setMessage("Uploading Image...")
+    setMessage("Uploading the NFT Image....")
+    console.log("Uploading the Image.....")
 
-    // Create instance to NFT.Storage
-    const nftstorage = new NFTStorage({ token: process.env.REACT_APP_NFT_STORAGE_API_KEY })
 
-    // Send request to store image
+    //Creating instance of NFT.Storage
+
+    const nftstorage = new NFTStorage({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweENmOTVhZTQ2NkFkRmMxMDBENDhFOTdhZjczNTI4RWJhODk1ODc2MEYiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY4MTM4NzM5NjM5OSwibmFtZSI6Ik5GVF9rZXkifQ.c3V1jSz9Pcb8qExoaI2Ia4L4_cp8eqDZb9hfTmGq0rk' })
+
+    //Sending a request to store image
+
     const { ipnft } = await nftstorage.store({
       image: new File([imageData], "image.jpeg", { type: "image/jpeg" }),
       name: name,
       description: description,
     })
 
-    // Save the URL
+    //save the url
     const url = `https://ipfs.io/ipfs/${ipnft}/metadata.json`
     setURL(url)
 
     return url
   }
 
+
+  //minting process
   const mintImage = async (tokenURI) => {
-    setMessage("Waiting for Mint...")
+    setMessage("Waiting for Mint....")
+    console.log("Waiting for Mint.....")
 
     const signer = await provider.getSigner()
-    const transaction = await nft.connect(signer).mint(tokenURI, { value: ethers.utils.parseUnits("1", "ether") })
+    const transaction = await nft.connect(signer).mint(tokenURI, { value: ethers.utils.parseUnits("1", "ether")})
     await transaction.wait()
   }
+  
 
   useEffect(() => {
     loadBlockchainData()
   }, [])
+
+
   const getStarted=()=>{
       setVisible("block");
       setBt("none");
