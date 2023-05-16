@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Play:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-white: #FFFFFF;
+  --clr-black: #202020;
+  --clr-blue: #011345;
+  --clr-blue-2: #052f70;
+}
+
+body {
+  margin: 0;
+  font-family: "Play";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------------------------------------ */
+/* -- NAVIGATION -- */
+
+nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.nav__brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__brand h1 {
+  color: var(--clr-blue);
+  font-size: clamp(1.75em, 4vw, 2.5em);
+  font-weight: 800;
+}
+.imgNav{
+  height: 20%;
+  width: 20%;
+}
+.nav__connect {
+  width: 175px;
+  height: 50px;
+  margin: 0 auto;
+
+  background-color: var(--clr-blue);
+  color: var(--clr-white);
+
+  border: none;
+  border-radius: 30px;
+
+  font-family: "Play";
+  font-size: 1.10em;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+
+.nav__connect:hover {
+  background-color: var(--clr-blue-2);
+}
+
+/* ------------------------------------------------------ */
+/* -- FORM -- */
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 600px;
+}
+
+.form1 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+
+  margin: 0 25px
+}
+
+form input[type="text"] {
+  width: 250px;
+  height: 50px;
+  margin: 10px 0;
+  padding: 10px;
+
+  border: 1px solid var(--clr-blue);
+  border-radius: 4px;
+
+  font-size: 1.10em;
+}
+
+form input[type="submit"] {
+  background-color: var(--clr-blue);
+  color: var(--clr-white);
+
+  width: 250px;
+  height: 50px;
+  margin: 10px 0;
+  padding: 10px;
+
+  border: none;
+
+  font-family: "Play";
+  font-size: 1.10em;
+  font-weight: 400;
+
+  cursor: pointer;
+  transition: all 250ms ease;
+  border-radius: 30px;
+}
+
+form input[type="submit"]:hover {
+  background-color: var(--clr-blue-2);
+}
+
+/* ------------------------------------------------------ */
+/* -- IMAGE -- */
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 90%;
+  width: 512px;
+  height: 512px;
+  margin: 0 25px;
+  border: 3px solid var(--clr-blue);
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.image img {
+  width: 512px;
+  height: 512px;
+  border-radius: 6px;
+}
+
+.image__placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image__placeholder p {
+  margin: 0 10px;
+}
+
+/* ------------------------------------------------------ */
+/* -- TEXT -- */
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+}
+
+.contain{
+/* width: 100% !important; */
+padding: 30px;
+}
+.main-box{
+  width: 90%;
+  /* margin-top: 20px; */
+  border-radius: 20px;
+  background: rgba( 255, 255, 255, 0.4 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 5.5px );
+-webkit-backdrop-filter: blur( 5.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+  padding: 20px;
+}
+
+@import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
+.contact3 {
+  font-family: "Montserrat", sans-serif;
+  color: #8d97ad;
+  font-weight: 300;
+}
+
+.contact3 h1,
+.contact3 h2,
+.contact3 h3,
+.contact3 h4,
+.contact3 h5,
+.contact3 h6 {
+  color: #3e4555;
+}
+
+.contact3 .font-weight-medium {
+  font-weight: 500;
+}
+
+.contact3 .card-shadow {
+  -webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+  box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+}
+
+.contact3 .btn-danger-gradiant {
+  background: #ff4d7e;
+  background: -webkit-linear-gradient(legacy-direction(to right), #ff4d7e 0%, #ff6a5b 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#ff4d7e), to(#ff6a5b));
+  background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+}
+
+.contact3 .btn-danger-gradiant:hover {
+  background: #ff6a5b;
+  background: -webkit-linear-gradient(legacy-direction(to right), #ff6a5b 0%, #ff4d7e 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#ff6a5b), to(#ff4d7e));
+  background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+}
+.outer{
+  background-image: url('./components/photo-1586812789825-65e3f7399425.avif');
+background-size: cover;
+transition: all 0.3s linear;
+position: relative;
+display: block;
+}
+.contain-main-box{
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); */
+}
+body{
+  position: relative;
+}
+.bt-outer-box{
+  background-image: url('./components/stock-photo-color-abstract-illustration-made-of-purple-colored-oil-paint-on-background-luxury-abstract-for-2162054401-transformed.jpeg');
+height: 100%;
+  width: 100.5%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.bt-box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  flex-direction: column;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+

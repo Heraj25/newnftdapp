@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.005d2a5e.css",
+    "main.js": "/static/js/main.d53d5b32.js",
+    "static/js/787.7d61d2f7.chunk.js": "/static/js/787.7d61d2f7.chunk.js",
+    "static/media/DALL·E 2023-04-16 17.01.09 - futuristic cute robot on call with some scifi background.png": "/static/media/DALL·E 2023-04-16 17.01.09 - futuristic cute robot on call with some scifi background.6d45af50159725b30127.png",
+    "static/media/Untitled-6.png": "/static/media/Untitled-6.26eb4cd4ccd7def6b36c.png",
+    "static/media/photo-1586812789825-65e3f7399425.avif": "/static/media/photo-1586812789825-65e3f7399425.10475b060b4cda93dd3b.avif",
+    "static/media/stock-photo-color-abstract-illustration-made-of-purple-colored-oil-paint-on-background-luxury-abstract-for-2162054401-transformed.jpeg": "/static/media/stock-photo-color-abstract-illustration-made-of-purple-colored-oil-paint-on-background-luxury-abstract-for-2162054401-transformed.f67a29e0527610c07296.jpeg",
+    "index.html": "/index.html",
+    "main.005d2a5e.css.map": "/static/css/main.005d2a5e.css.map",
+    "main.d53d5b32.js.map": "/static/js/main.d53d5b32.js.map",
+    "787.7d61d2f7.chunk.js.map": "/static/js/787.7d61d2f7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.005d2a5e.css",
+    "static/js/main.d53d5b32.js"
+  ]
+}
