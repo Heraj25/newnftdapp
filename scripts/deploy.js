@@ -3,6 +3,7 @@ const hre = require("hardhat");
 async function main() {
   const NAME = "AI Generated NFT"
   const SYMBOL = "AINFT"
+  // eslint-disable-next-line no-undef
   const COST = ethers.utils.parseUnits("1", "ether") // 1 ETH
 
   const NFT = await hre.ethers.getContractFactory("NFT")
